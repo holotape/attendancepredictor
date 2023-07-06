@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Museum Attendance Prediction</title>
+    <script type="text/javascript">
+      function clearForm() {
+        const inputs = document.getElementsByTagName('input');
+        for(let i = 0; i < inputs.length; i++) {
+          if(inputs[i].type === 'number') {
+            inputs[i].value = '';
+          }
+        }
+      }
+    </script>
+</head>
+<body>
+    <h1>Museum Attendance Prediction</h1>
+
+    <form method="POST">
+        {% for i in range(1, 11) %}
+        <label for="year{{i}}">Year {{i}} Attendance:</label><br>
+        <input type="number" id="year{{i}}" name="year{{i}}" value="{{attendance_values[i-1]}}" required><br>
+        {% endfor %}
+        <input type="submit" value="Predict">
+        <input type="button" onclick="clearForm()" value="Clear">
+    </form>
+
+    {% if prediction %}
+    <h2>Predicted Attendance for the Eleventh Year: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>
